@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="thought-container">
+    <article class="thought">
+        <header>
+            <h1 class="thought-title">{{ page.title }}</h1>
+            {% if page.date %}
+            <div class="thought-date">{{ page.date | date(format="%Y-%m-%d") }}</div>
+            {% endif %}
+        </header>
+        
+        <div class="thought-content">
+            {{ page.content | safe }}
+        </div>
+    </article>
+</div>
+
+<style>
+    .thought-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .thought {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    .thought-title {
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .thought-date {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .thought-content {
+        line-height: 1.8;
+        color: #444;
+    }
+
+    .thought-content p {
+        margin-bottom: 1.5rem;
+    }
+</style>
+{% endblock content %} 

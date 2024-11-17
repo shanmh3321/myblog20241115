@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">{{ section.title }}</h1>
+    
+    <div class="thoughts-list">
+        {% set thoughts_lines = section.content | split(pat="\n") %}
+        {% for line in thoughts_lines %}
+            {% if line is starting_with("> ") %}
+                <div class="thought-item">
+                    <div class="thought-content">
+                        {{ line | replace(from="> ", to="") | markdown | safe }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+    }
+
+    .thoughts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .thought-item {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #007bff;
+    }
+
+    .thought-content {
+        color: #444;
+        line-height: 1.6;
+    }
+
+    .thought-content p {
+        margin: 0;
+    }
+
+    .thought-date {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        text-align: right;
+    }
+</style>
+{% endblock content %} 
